@@ -27,17 +27,14 @@ public class RingtonePlayingService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-
         String state = intent.getStringExtra("extra");
         long alarmSongChoice = intent.getLongExtra("alarmSongChoice", 0);
-
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         Intent intentMainActivity = new Intent(this.getApplicationContext(), MainActivity.class);
 
         PendingIntent pendingIntentMainActivity = PendingIntent.getActivity(this, 0, intentMainActivity, 0);
-
 
         Notification notificationPopup = new Notification.Builder(this)
                 .setContentTitle("An alarm is going off!")
@@ -53,7 +50,12 @@ public class RingtonePlayingService extends Service {
             startId = 0;
         }
 
+        runAlarmSong(startId, alarmSongChoice, notificationManager, notificationPopup);
 
+        return START_NOT_STICKY;
+    }
+
+    private void runAlarmSong(int startId, long alarmSongChoice, NotificationManager notificationManager, Notification notificationPopup) {
         if (!this.isMusicPlaying && startId == 1) {
             Log.e("there is no music,", "and you want start");
 
@@ -107,11 +109,7 @@ public class RingtonePlayingService extends Service {
             Log.e("else", "somehow you reached this");
 
         }
-
-
-        return START_NOT_STICKY;
     }
-
 
     @Override
     public void onDestroy() {

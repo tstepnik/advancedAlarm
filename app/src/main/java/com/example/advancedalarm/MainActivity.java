@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
     }
 
+
     private void setAlarmText(String text) {
         updateText.setText(text);
     }
@@ -93,17 +94,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             intent.putExtra("extra", "alarm on");
             intent.putExtra("alarmSongChoice",chooseAlarmClockSong);
 
-
-
             pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         };
 
         return alarmOnListener;
-
     }
-
-
     private View.OnClickListener alarmOffListener() {
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         View.OnClickListener alarmOffListener = view -> {
@@ -114,8 +110,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             intent.putExtra("alarmSongChoice",chooseAlarmClockSong);
 
             sendBroadcast(intent);
-
-
         };
 
         return alarmOffListener;
@@ -133,6 +127,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }
