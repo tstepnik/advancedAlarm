@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Advanced Alarm</string>
+
+    <string-array name="spinner_elements">
+        <item>Pick a Alarm Sound</item>
+        <item>Creepy clock chiming</item>
+        <item>Midnight chimes sound under effect</item>
+        <item>Timer clicking sound</item>
+    </string-array>
+</resources>
